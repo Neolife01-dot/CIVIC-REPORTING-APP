@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | Civic Reporting App</title>
+
+    <link rel="stylesheet" href="../css/admin.css">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <h2>CivicReport</h2>
+
+        <p class="admin-label">ADMIN DASHBOARD</p>
+
+        <nav>
+
+            <a href="admin.html" class="active">
+                📊 Dashboard
+            </a>
+
+            <a href="reports.html">
+                📋 My Reports
+            </a>
+
+            <a href="report.html">
+                ➕ Submit Report
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div>
+                <h1>Admin Dashboard</h1>
+                <p>Manage and monitor community reports.</p>
+            </div>
+
+            <div class="admin-user">
+                👤 Administrator
+            </div>
+
+        </header>
+
+
+        <!-- STATISTICS -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <div>
+                    <p>Total Reports</p>
+                    <h2 id="totalReports">0</h2>
+                </div>
+
+                <span>📋</span>
+
+            </div>
+
+
+            <div class="stat-card pending-card">
+
+                <div>
+                    <p>Pending</p>
+                    <h2 id="pendingReports">0</h2>
+                </div>
+
+                <span>⏳</span>
+
+            </div>
+
+
+            <div class="stat-card review-card">
+
+                <div>
+                    <p>Under Review</p>
+                    <h2 id="reviewReports">0</h2>
+                </div>
+
+                <span>🔎</span>
+
+            </div>
+
+
+            <div class="stat-card resolved-card">
+
+                <div>
+                    <p>Resolved</p>
+                    <h2 id="resolvedReports">0</h2>
+                </div>
+
+                <span>✅</span>
+
+            </div>
+
+        </section>
+
+
+        <!-- REPORTS -->
+
+        <section class="reports-section">
+
+            <div class="section-header">
+
+                <div>
+                    <h2>Community Reports</h2>
+                    <p>Review and manage submitted issues.</p>
+                </div>
+
+                <button
+                    class="refresh-btn"
+                    onclick="loadReports()"
+                >
+                    🔄 Refresh
+                </button>
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>Issue</th>
+
+                            <th>Category</th>
+
+                            <th>Location</th>
+
+                            <th>Date</th>
+
+                            <th>Status</th>
+
+                            <th>Image</th>
+
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="reportsTable">
+
+                        <tr>
+
+                            <td colspan="8">
+                                Loading reports...
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="../js/admin.js"></script>
+
+</body>
+
+</html>

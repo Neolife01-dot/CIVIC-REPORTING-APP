@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report an Issue | Civic Reporting App</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/report.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="report-card">
+
+        <h1>Report a Civil Issue</h1>
+
+        <p>Help improve your community by reporting public issues.</p>
+
+        <form id="reportForm">
+
+            <div class="form-group">
+
+                <label>Issue Title</label>
+
+                <input
+                    type="text"
+                    id="title"
+                    placeholder="Example: Large pothole on Aba Road"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Category</label>
+
+                <select id="category" required>
+
+                    <option value="">Select Category</option>
+
+                    <option>Road</option>
+
+                    <option>Flooding</option>
+
+                    <option>Waste</option>
+
+                    <option>Streetlight</option>
+
+                    <option>Electricity</option>
+
+                    <option>Water Supply</option>
+
+                    <option>Environment</option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Description</label>
+
+                <textarea
+                    id="description"
+                    rows="5"
+                    placeholder="Describe the issue..."
+                    required
+                ></textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Upload Photo</label>
+
+                <input
+                    type="file"
+                    id="image"
+                    accept="image/*"
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Location</label>
+
+                <input
+                    type="text"
+                    id="location"
+                    placeholder="Enter location or use GPS"
+                    required
+                >
+
+                <button type="button" id="gpsBtn">
+
+                    📍 Use Current Location
+
+                </button>
+
+            </div>
+
+            <button type="submit" class="submit-btn">
+
+                Submit Report
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="../js/report.js"></script>
+
+</body>
+</html>

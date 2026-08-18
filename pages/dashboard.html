@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Civic Reporting App</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <h2>Civic Reporting</h2>
+
+        <ul>
+
+            <li><a href="dashboard.html">🏠 Dashboard</a></li>
+
+            <li><a href="report.html">📝 Report Issue</a></li>
+
+            <li><a href="reports.html">📋 My Reports</a></li>
+
+            <li><a href="#">👤 Profile</a></li>
+
+            <li><a href="../index.html">🚪 Logout</a></li>
+
+        </ul>
+
+    </aside>
+
+    <!-- Main Content -->
+
+    <main class="main-content">
+
+        <header>
+
+            <h1>Welcome, Great 👋</h1>
+
+            <p>Let's make our community better today.</p>
+
+        </header>
+
+        <!-- Statistics -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <h3>Total Reports</h3>
+
+                <h2>12</h2>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>Pending</h3>
+
+                <h2>4</h2>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>Resolved</h3>
+
+                <h2>8</h2>
+
+            </div>
+
+        </section>
+
+        <!-- Quick Action -->
+
+        <section class="action">
+
+            <a href="report.html" class="btn">
+
+                + Report New Issue
+
+            </a>
+
+        </section>
+
+        <!-- Recent Reports -->
+
+        <section class="reports">
+
+            <h2>Recent Reports</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Issue</th>
+
+                        <th>Category</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>Pothole on Aba Road</td>
+
+                        <td>Road</td>
+
+                        <td><span class="pending">Pending</span></td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Broken Streetlight</td>
+
+                        <td>Streetlight</td>
+
+                        <td><span class="review">Under Review</span></td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>Blocked Drainage</td>
+
+                        <td>Flooding</td>
+
+                        <td><span class="resolved">Resolved</span></td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="./JS/dashboard.js"></script>
+
+</body>
+</html>
