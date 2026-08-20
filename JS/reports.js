@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000";
+const API_URL = "https://civic-reporting-app-wsz2.onrender.com";
 
 const tableBody = document.querySelector("tbody");
 
