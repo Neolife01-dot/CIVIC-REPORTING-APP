@@ -1,137 +1,155 @@
-#         Civic Reporting App
+#  CIVIC REPORTING APP
 
-##  Project Overview
+A simple web-based platform that enables citizens to report public and community-related issues, track their reports, and monitor the progress of reported issues.
 
-Civic Reporting App is a web-based platform that allows citizens to report community problems such as broken streetlights, potholes, flooding, waste disposal issues, water supply problems, and other public infrastructure challenges.
+##  Live Demo
 
-The platform helps citizens submit reports with descriptions, locations, and photographic evidence while allowing administrators to monitor and update the status of reported issues.
+🔗 **Live Application:** https://civic-reporting-app-1.onrender.com
+
+🔗 **GitHub Repository:** https://github.com/Neolife01-dot/CIVIC-REPORTING-APP
 
 ---
 
 ##  Problem Statement
 
-Many community problems remain unresolved because citizens do not have a simple and centralized way to report them.
+Many community problems such as broken streetlights, damaged roads, blocked drainage systems, waste disposal, flooding, and water supply issues often go unreported or are difficult to track.
 
-Issues such as:
+Citizens may not know where to report these problems, while authorities may lack an organized system for receiving and monitoring complaints.
 
-- Broken streetlights
-- Bad roads
-- Flooding
-- Blocked drainage
-- Waste disposal
-- Electricity problems
-- Water supply issues
-
-may go unreported or lack proper tracking.
-
-The Civic Reporting App provides a digital platform for reporting and monitoring these issues.
+The Civic Reporting App provides a simple digital platform for citizens to report issues and track their status.
 
 ---
 
-##  Solution
+##  Our Solution
 
 The Civic Reporting App allows users to:
 
-1. Submit civic issue reports.
-2. Select an issue category.
-3. Provide a detailed description.
-4. Enter the location of the issue.
-5. Upload photographic evidence.
-6. Track submitted reports.
-7. View the current status of reports.
+- Report civic and community issues
+- Add descriptions and locations
+- Upload images as evidence
+- Track submitted reports
+- View report statuses
+- Allow administrators to manage reports
+- Update the status of reported issues
 
-Administrators can:
-
-1. View community reports.
-2. Monitor pending reports.
-3. Review submitted issues.
-4. Update report status.
-5. Mark resolved issues.
+The goal is to improve communication between citizens and responsible authorities while encouraging community participation.
 
 ---
 
 ##  Key Features
 
-### Citizen Features
+###  Citizen Features
 
-- Report civic issues
-- Issue categories
-- Issue description
-- Location input
-- GPS location support
-- Image upload
-- Report submission confirmation
+- User registration
+- User login
+- Submit civic reports
+- Select issue categories
+- Add issue descriptions
+- Add location information
+- Upload images
 - View submitted reports
-- View report details
 - Track report status
 
-### Administrator Features
+###  Admin Features
 
-- Admin Dashboard
-- Total reports statistics
-- Pending reports
-- Under Review reports
-- Resolved reports
-- Community reports table
-- View report information
+- View submitted reports
+- Review reported issues
 - Update report status
-- Refresh dashboard data
+- Monitor pending reports
+- Mark issues as resolved
+
+###  Location
+
+Users can manually enter a location or use their device's GPS location.
+
+###  Image Upload
+
+Users can attach images to provide visual evidence of reported issues.
 
 ---
 
-## Technologies Used
+##  Report Status
+
+Reports can have the following statuses:
+
+- 🟡 Pending
+- 🔵 Under Review
+- 🟢 Resolved
+
+---
+
+## 🧰 Technologies Used
 
 ### Frontend
 
 - HTML5
 - CSS3
 - JavaScript
+- Responsive Web Design
 
 ### Backend
 
 - Node.js
 - Express.js
+- REST API
 
 ### Database
 
 - SQLite
 
-### Other Technologies
+### Other Tools
 
-- Multer for image uploads
-- Nodemon for development
-- REST API
-- Browser Geolocation API
+- Git
+- GitHub
+- Render
+- Multer
+- CORS
+- Nodemon
 
 ---
 
-##  Project Structure
+## 🗂️ Project Structure
 
 ```text
-civic-reporting-app/
+CIVIC-REPORTING-APP/
 │
 ├── css/
+│   ├── admin.css
+│   ├── auth.css
+│   ├── dashboard.css
 │   ├── report.css
 │   ├── reports.css
-│   └── admin.css
+│   └── style.css
 │
 ├── js/
+│   ├── admin.js
+│   ├── auth.js
+│   ├── dashboard.js
+│   ├── main.js
 │   ├── report.js
-│   ├── reports.js
-│   └── admin.js
+│   └── reports.js
+│
+├── IMAGE/
+│   ├── hero.png
+│   └── logo.png
 │
 ├── pages/
+│   ├── admin.html
+│   ├── dashboard.html
+│   ├── login.html
+│   ├── register.html
 │   ├── report.html
-│   ├── reports.html
-│   └── admin.html
+│   └── reports.html
 │
 ├── server/
-│   ├── server.js
 │   ├── config/
-│   ├── database/
+│   │   └── db.js
 │   ├── uploads/
+│   ├── init-db.js
 │   ├── package.json
-│   └── package-lock.json
+│   ├── package-lock.json
+│   └── server.js
 │
 ├── index.html
-└── README.md
+├── README.md
+└── .gitignore
