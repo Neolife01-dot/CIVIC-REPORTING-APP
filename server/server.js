@@ -431,6 +431,83 @@ app.put("/api/reports/:id/status", (req, res) => {
     });
 });
 
-app.listen(PORT, "0.0.0.0", () => {
-    console.log(`Server running on port ${PORT}`);
-});
+// Initialize database tables on startup
+function initializeDatabase() {
+    return new Promise((resolve, reject) => {
+        db.serialize(() => {
+            // Check if users table exists
+            db.get(
+                "SELECT name FROM sqlite_master WHERE type='table' AND name='users'",
+                (err, row) => {
+                    if (err) {
+                        console.error("Database check error:", err.message);
+                        reject(err);
+                        return;
+                    }
+
+                    if (!row) {
+                        // Users table doesn't exist, create both tables
+                        console.log("📦 Initializing database tables...");
+
+                        db.run(`
+                            CREATE TABLE users (
+                                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                name TEXT NOT NULL,
+                                email TEXT UNIQUE NOT NULL,
+                                password TEXT NOT NULL,
+                                role TEXT NOT NULL DEFAULT 'citizen',
+                                created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+                            )
+                        `, (err) => {
+                            if (err) {
+                                console.error("Error creating users table:", err.message);
+                                reject(err);
+                                return;
+                            }
+                            console.log("✅ Users table created successfully.");
+
+                            // Create reports table
+                            db.run(`
+                                CREATE TABLE reports (
+                                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                    user_id INTEGER,
+                                    title TEXT NOT NULL,
+                                    description TEXT NOT NULL,
+                                    category TEXT NOT NULL,
+                                    location TEXT NOT NULL,
+                                    image TEXT,
+                                    status TEXT NOT NULL DEFAULT 'pending',
+                                    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                                    FOREIGN KEY (user_id) REFERENCES users(id)
+                                )
+                            `, (err) => {
+                                if (err) {
+                                    console.error("Error creating reports table:", err.message);
+                                    reject(err);
+                                    return;
+                                }
+                                console.log("✅ Reports table created successfully.");
+                                resolve();
+                            });
+                        });
+                    } else {
+                        console.log("✅ Database tables already exist.");
+                        resolve();
+                    }
+                }
+            );
+        });
+    });
+}
+
+// Start server after database initialization
+initializeDatabase()
+    .then(() => {
+        app.listen(PORT, "0.0.0.0", () => {
+            console.log(`🚀 Server running on port ${PORT}`);
+        });
+    })
+    .catch((error) => {
+        console.error("❌ Failed to initialize database:", error.message);
+        process.exit(1);
+    });
