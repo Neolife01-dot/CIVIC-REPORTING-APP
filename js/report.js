@@ -1,7 +1,7 @@
 const reportForm = document.getElementById("reportForm");
 const gpsBtn = document.getElementById("gpsBtn");
 
-const API_URL = "https://civic-reporting-app-wsz2.onrender.com";
+const API_URL = "https://civic-reporting-app-1.onrender.com";
 
 // ===============================
 // GPS LOCATION
