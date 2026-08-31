@@ -1,33 +1,86 @@
-const sqlite3 = require("sqlite3").verbose();
-const fs = require("fs");
-const path = require("path");
+const { Pool } = require("pg");
 
-const candidates = [
-    path.join(__dirname, "../database/civic.db"),
-    path.join(process.cwd(), "database", "civic.db"),
-    path.join("/tmp", "civic-reporting-app.db")
-];
+const connectionString = process.env.DATABASE_URL || "postgresql://postgres:postgres@localhost:5432/civic_reporting";
 
-let dbPath = candidates[0];
-
-for (const candidate of candidates) {
-    try {
-        const dir = path.dirname(candidate);
-        fs.mkdirSync(dir, { recursive: true });
-        fs.accessSync(dir, fs.constants.W_OK);
-        dbPath = candidate;
-        break;
-    } catch (error) {
-        // Try the next candidate
-    }
-}
-
-const db = new sqlite3.Database(dbPath, (err) => {
-    if (err) {
-        console.error("Database connection failed:", err.message);
-    } else {
-        console.log("Connected to Civic Reporting database:", dbPath);
-    }
+const pool = new Pool({
+    connectionString,
+    ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false
 });
+
+pool.on("connect", () => {
+    console.log("Connected to PostgreSQL database.");
+});
+
+pool.on("error", (err) => {
+    console.error("Unexpected PostgreSQL client error:", err);
+});
+
+const db = {
+    serialize(fn) {
+        return Promise.resolve().then(fn);
+    },
+
+    get(sql, params, callback) {
+        if (typeof params === "function") {
+            callback = params;
+            params = [];
+        }
+
+        return pool.query(sql, params)
+            .then((result) => {
+                const row = result.rows[0] || null;
+                if (callback) callback(null, row);
+                return row;
+            })
+            .catch((err) => {
+                if (callback) callback(err, null);
+                throw err;
+            });
+    },
+
+    all(sql, params, callback) {
+        if (typeof params === "function") {
+            callback = params;
+            params = [];
+        }
+
+        return pool.query(sql, params)
+            .then((result) => {
+                if (callback) callback(null, result.rows);
+                return result.rows;
+            })
+            .catch((err) => {
+                if (callback) callback(err, null);
+                throw err;
+            });
+    },
+
+    run(sql, params, callback) {
+        if (typeof params === "function") {
+            callback = params;
+            params = [];
+        }
+
+        return pool.query(sql, params)
+            .then((result) => {
+                const context = {
+                    lastID: result.rows?.[0]?.id ?? null,
+                    changes: result.rowCount ?? 0
+                };
+
+                if (callback) callback.call(context, null);
+                return context;
+            })
+            .catch((err) => {
+                const context = { lastID: null, changes: 0 };
+                if (callback) callback.call(context, err);
+                throw err;
+            });
+    },
+
+    query(sql, params) {
+        return pool.query(sql, params);
+    }
+};
 
 module.exports = db;
