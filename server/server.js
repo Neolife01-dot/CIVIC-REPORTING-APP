@@ -44,14 +44,19 @@ const upload = multer({
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "..")));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-// Test Route
-app.get("/", (req, res) => {
 
+// Serve frontend files
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "index.html"));
+});
+
+// Test Route
+app.get("/api", (req, res) => {
     res.json({
         message: "Welcome to Civic Reporting API 🚀"
     });
-
 });
 
 // Start Server
